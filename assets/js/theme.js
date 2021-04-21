@@ -6,11 +6,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-/* -------------------------------------------------------------------------- */
-
-/*                                    Utils                                   */
-
-/* -------------------------------------------------------------------------- */
 var docReady = function docReady(fn) {
   // see if DOM is already available
   if (document.readyState === 'loading') {
@@ -42,7 +37,6 @@ var getData = function getData(el, data) {
     return el.dataset[camelize(data)];
   }
 };
-/* ----------------------------- Colors function ---------------------------- */
 
 
 var hexToRgb = function hexToRgb(hexValue) {
@@ -61,7 +55,6 @@ var rgbaColor = function rgbaColor() {
   var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
   return "rgba(".concat(hexToRgb(color), ", ").concat(alpha, ")");
 };
-/* --------------------------------- Colors --------------------------------- */
 
 
 var colors = {
@@ -116,7 +109,6 @@ var isScrolledIntoView = function isScrolledIntoView(el) {
   var height = el.offsetHeight;
 
   while (el.offsetParent) {
-    // eslint-disable-next-line no-param-reassign
     el = el.offsetParent;
     top += el.offsetTop;
     left += el.offsetLeft;
@@ -149,7 +141,6 @@ var getBreakpoint = function getBreakpoint(el) {
 
   return breakpoint;
 };
-/* --------------------------------- Cookie --------------------------------- */
 
 
 var setCookie = function setCookie(name, value, expire) {
@@ -171,13 +162,12 @@ var settings = {
     borderColor: 'rgba(255, 255, 255, 0.8)'
   }
 };
-/* -------------------------- Chart Initialization -------------------------- */
 
 var newChart = function newChart(chart, config) {
   var ctx = chart.getContext('2d');
   return new window.Chart(ctx, config);
 };
-/* ---------------------------------- Store --------------------------------- */
+
 
 
 var getItemFromStore = function getItemFromStore(key, defaultValue) {
@@ -223,11 +213,6 @@ var utils = {
   setItemToStore: setItemToStore,
   getStoreSpace: getStoreSpace
 };
-/* -------------------------------------------------------------------------- */
-
-/*                                  Detector                                  */
-
-/* -------------------------------------------------------------------------- */
 
 var detectorInit = function detectorInit() {
   var _window = window,
@@ -247,9 +232,6 @@ var detectorInit = function detectorInit() {
   is.windows() && addClass(html, 'windows');
   navigator.userAgent.match('CriOS') && addClass(html, 'chrome');
 };
-/*-----------------------------------------------
-|   Top navigation opacity on scroll
------------------------------------------------*/
 
 
 var navbarInit = function navbarInit() {
@@ -290,7 +272,7 @@ var navbarInit = function navbarInit() {
         backgroundImage = _window$getComputedSt.backgroundImage;
 
     var transition = 'background-color 0.35s ease';
-    navbar.style.backgroundImage = 'none'; // Change navbar background color on scroll
+    navbar.style.backgroundImage = 'none'; 
 
     window.addEventListener(Events.SCROLL, function () {
       var scrollTop = html.scrollTop;
@@ -299,7 +281,7 @@ var navbarInit = function navbarInit() {
       navbar.style.backgroundColor = "rgba(".concat(colorRgb[0], ", ").concat(colorRgb[1], ", ").concat(colorRgb[2], ", ").concat(alpha, ")");
       navbar.style.backgroundImage = alpha > 0 || utils.hasClass(navbarCollapse, 'show') ? backgroundImage : 'none';
       alpha > 0 || utils.hasClass(navbarCollapse, 'show') ? navbar.classList.add(shadowName) : navbar.classList.remove(shadowName);
-    }); // Toggle bg class on window resize
+    }); 
 
     utils.resize(function () {
       var breakPoint = utils.getBreakpoint(navbar);
@@ -332,11 +314,8 @@ var navbarInit = function navbarInit() {
       navbar.style.transition = 'none';
     });
   }
-}; // /* -------------------------------------------------------------------------- */
-// /*                            Theme Initialization                            */
-// /* -------------------------------------------------------------------------- */
-
+};
 
 docReady(navbarInit);
 docReady(detectorInit);
-//# sourceMappingURL=theme.js.map
+
